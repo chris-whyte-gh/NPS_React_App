@@ -1,8 +1,8 @@
 # NPS_React_App
-Learn React and APIs using the NPS API
+A National Parks React App that uses the National Parks Service API to display parks based on state and activity.
 
 ## Available Scripts
-In the project directory, you can run:
+In the project directory, run:
 
 ### `npm start`
 Runs the app in the development mode.
@@ -18,3 +18,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `npm run build`
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+# How this project started
+- Create a `.env` file in the project directory
+- Add REACT_APP_NPS_API_KEY= add the key here, but add it to the `.gitignore` file so it is not pushed to github
+- Important: Restart the server if changes are made to the .env file to make sure changes are picked up
+

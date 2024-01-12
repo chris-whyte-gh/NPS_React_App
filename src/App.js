@@ -5,23 +5,30 @@ import "./App.css";
 //Define a state variable to manage the selected state
 const App = () => {
   const [selectedState, setSelectedState] = useState("");
+  //set state of component with result data. We use null because it holds the response of the API call, and it may not be available. Component checks for response before rendering data. If we knew there would always be data, we could use an empty array.
+  const [result, setResult] = useState(null);
 
+  // useEffect Hook makes the API Call and triggers an effect when the selectedState changes. The effect is a function that makes the API call and sets the result state variable with the response.
   useEffect(() => {
-    if (selectedState) {
+    if (selectedState) { //Is selectedState truthy. Only make a call if a state is selected (not null or empty)
       const apiKey = process.env.REACT_APP_NPS_API_KEY;
+      console.log(apiKey);
       fetch(
         `https://developer.nps.gov/api/v1/parks?stateCode=${selectedState}&api_key=${apiKey}`
       )
         .then((res) => res.json()) //Data returned in a Promise, then parsed to JSON object
         .then((data) => {
-          console.log(data); 
+          console.log(data);
+          setResult(data);
         });
     }
-  }, [selectedState]); //Only run this effect when the selectedState changes
+  }, [selectedState]); //Second argument in useEffect. An array of values, and when one of the values changes, useEffect is called
 
   return (
-    <div>
+    <div className="dropdown">
       <h1>National Parks by State</h1>
+      {/* Handle null state, where user goes back to select a state */}
+      <label htmlFor="state">Select a state:</label>
       <select
         value={selectedState}
         onChange={(e) => setSelectedState(e.target.value)}
@@ -78,6 +85,18 @@ const App = () => {
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
       </select>
+
+      {/* Result variable is initially set to null and is being accessed before fetch returns the data. Add a check to ensure result is not null and that it contains valid data. */}
+      {result && result.data && result.data.length > 0 && (
+        <div className="park-results">
+          {result.data.map((park) => (
+            <React.Fragment key={park.id}>
+              <h3 key={park.id}>Park Name: {park.fullName}</h3>
+              <section id="section">Description: {park.description}</section>
+            </React.Fragment>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
