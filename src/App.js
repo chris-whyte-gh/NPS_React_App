@@ -10,7 +10,8 @@ const App = () => {
 
   // useEffect Hook makes the API Call and triggers an effect when the selectedState changes. The effect is a function that makes the API call and sets the result state variable with the response.
   useEffect(() => {
-    if (selectedState) { //Is selectedState truthy. Only make a call if a state is selected (not null or empty)
+    if (selectedState) {
+      //Is selectedState truthy. Only make a call if a state is selected (not null or empty)
       const apiKey = process.env.REACT_APP_NPS_API_KEY;
       console.log(apiKey);
       fetch(
@@ -28,12 +29,14 @@ const App = () => {
     <div className="dropdown">
       <h1>National Parks by State</h1>
       {/* Handle null state, where user goes back to select a state */}
-      <label htmlFor="state">Select a state:</label>
+      <label htmlFor="state-dropdown">Select a state:</label>
       <select
+        id="state-dropdown"
+        name="state"
         value={selectedState}
         onChange={(e) => setSelectedState(e.target.value)}
       >
-        <option value="">Select a state</option>
+        <option value="" disabled hidden>Select a state</option> {/* Hides it from dropdown and unavailable for */}
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
