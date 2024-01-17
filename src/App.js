@@ -36,7 +36,10 @@ const App = () => {
         value={selectedState}
         onChange={(e) => setSelectedState(e.target.value)}
       >
-        <option value="" disabled hidden>Select a state</option> {/* Hides it from dropdown and unavailable for */}
+        <option value="" disabled hidden>
+          Select a state
+        </option>{" "}
+        {/* Hides it from dropdown and unavailable for */}
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
@@ -94,7 +97,12 @@ const App = () => {
         <div className="park-results">
           {result.data.map((park) => (
             <React.Fragment key={park.id}>
-              <h3 key={park.id}>Park Name: {park.fullName}</h3>
+              <h3 key={park.id}>
+                Park Name:{" "}
+                <a href={park.url} target="_blank" rel="noopener noreferrer">
+                  {park.fullName}{" "}
+                </a>
+              </h3>
               <section id="section">Description: {park.description}</section>
             </React.Fragment>
           ))}
