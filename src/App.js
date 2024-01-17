@@ -21,9 +21,66 @@ const App = () => {
         .then((data) => {
           console.log(data);
           setResult(data);
+        })
+        .catch((error) => {
+          console.error(error);
         });
     }
   }, [selectedState]); //Second argument in useEffect. An array of values, and when one of the values changes, useEffect is called
+
+  const stateOptions = [
+    { value: "", label: "Select a state", disabled: true, hidden: true },
+    { value: "AL", label: "Alabama" },
+    { value: "AK", label: "Alaska" },
+    { value: "AZ", label: "Arizona" },
+    { value: "AR", label: "Arkansas" },
+    { value: "CA", label: "California" },
+    { value: "CO", label: "Colorado" },
+    { value: "CT", label: "Connecticut" },
+    { value: "DE", label: "Delaware" },
+    { value: "FL", label: "Florida" },
+    { value: "GA", label: "Georgia" },
+    { value: "HI", label: "Hawaii" },
+    { value: "ID", label: "Idaho" },
+    { value: "IL", label: "Illinois" },
+    { value: "IN", label: "Indiana" },
+    { value: "IA", label: "Iowa" },
+    { value: "KS", label: "Kansas" },
+    { value: "KY", label: "Kentucky" },
+    { value: "LA", label: "Louisiana" },
+    { value: "ME", label: "Maine" },
+    { value: "MD", label: "Maryland" },
+    { value: "MA", label: "Massachusetts" },
+    { value: "MI", label: "Michigan" },
+    { value: "MN", label: "Minnesota" },
+    { value: "MS", label: "Mississippi" },
+    { value: "MO", label: "Missouri" },
+    { value: "MT", label: "Montana" },
+    { value: "NE", label: "Nebraska" },
+    { value: "NV", label: "Nevada" },
+    { value: "NH", label: "New Hampshire" },
+    { value: "NJ", label: "New Jersey" },
+    { value: "NM", label: "New Mexico" },
+    { value: "NY", label: "New York" },
+    { value: "NC", label: "North Carolina" },
+    { value: "ND", label: "North Dakota" },
+    { value: "OH", label: "Ohio" },
+    { value: "OK", label: "Oklahoma" },
+    { value: "OR", label: "Oregon" },
+    { value: "PA", label: "Pennsylvania" },
+    { value: "RI", label: "Rhode Island" },
+    { value: "SC", label: "South Carolina" },
+    { value: "SD", label: "South Dakota" },
+    { value: "TN", label: "Tennessee" },
+    { value: "TX", label: "Texas" },
+    { value: "UT", label: "Utah" },
+    { value: "VT", label: "Vermont" },
+    { value: "VA", label: "Virginia" },
+    { value: "WA", label: "Washington" },
+    { value: "WV", label: "West Virginia" },
+    { value: "WI", label: "Wisconsin" },
+    { value: "WY", label: "Wyoming" },
+  ];
 
   return (
     <div className="dropdown">
@@ -36,73 +93,35 @@ const App = () => {
         value={selectedState}
         onChange={(e) => setSelectedState(e.target.value)}
       >
-        <option value="" disabled hidden>
-          Select a state
-        </option>{" "}
-        {/* Hides it from dropdown and unavailable for */}
-        <option value="AL">Alabama</option>
-        <option value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-        <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DE">Delaware</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-        <option value="ID">Idaho</option>
-        <option value="IL">Illinois</option>
-        <option value="IN">Indiana</option>
-        <option value="IA">Iowa</option>
-        <option value="KS">Kansas</option>
-        <option value="KY">Kentucky</option>
-        <option value="LA">Louisiana</option>
-        <option value="ME">Maine</option>
-        <option value="MD">Maryland</option>
-        <option value="MA">Massachusetts</option>
-        <option value="MI">Michigan</option>
-        <option value="MN">Minnesota</option>
-        <option value="MS">Mississippi</option>
-        <option value="MO">Missouri</option>
-        <option value="MT">Montana</option>
-        <option value="NE">Nebraska</option>
-        <option value="NV">Nevada</option>
-        <option value="NH">New Hampshire</option>
-        <option value="NJ">New Jersey</option>
-        <option value="NM">New Mexico</option>
-        <option value="NY">New York</option>
-        <option value="NC">North Carolina</option>
-        <option value="ND">North Dakota</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="RI">Rhode Island</option>
-        <option value="SC">South Carolina</option>
-        <option value="SD">South Dakota</option>
-        <option value="TN">Tennessee</option>
-        <option value="TX">Texas</option>
-        <option value="UT">Utah</option>
-        <option value="VT">Vermont</option>
-        <option value="VA">Virginia</option>
-        <option value="WA">Washington</option>
-        <option value="WV">West Virginia</option>
-        <option value="WI">Wisconsin</option>
-        <option value="WY">Wyoming</option>
+        {stateOptions.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+            hidden={option.hidden}
+          >
+            {option.label}
+          </option>
+        ))}
       </select>
 
-      {/* Result variable is initially set to null and is being accessed before fetch returns the data. Add a check to ensure result is not null and that it contains valid data. */}
-      {result && result.data && result.data.length > 0 && (
+      {/* Result variable is initially set to null and is being accessed before fetch returns the data. 
+      Add a check to ensure result is not null (has a data property) and its > 0. 
+      If result = null, return undefined and stop here
+      If result has a data property which is null/undefined, or the length = 0, do same as above
+      If any of these are false, stop expression. If true (result contains at least 1 park), display park results
+      */}
+      {result?.data?.length > 0 && (
         <div className="park-results">
           {result.data.map((park) => (
             <React.Fragment key={park.id}>
               <h3 key={park.id}>
                 Park Name:{" "}
                 <a href={park.url} target="_blank" rel="noopener noreferrer">
-                  {park.fullName}{" "}
+                  {park.fullName}
                 </a>
               </h3>
+              <p id="park-type">{park.designation}</p>
               <section id="section">Description: {park.description}</section>
             </React.Fragment>
           ))}
@@ -113,3 +132,5 @@ const App = () => {
 };
 
 export default App;
+
+// Next step, hide park designation if one isn't listed, see Delaware > Chesapeake Bay
