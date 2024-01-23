@@ -1,6 +1,12 @@
 //importing necessary modules
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Header from "./Header";
+import Footer from "./Footer";
+
+// To Do
+// Create a component for the dropdown
+// Create a component for the park results
 
 //Define a state variable to manage the selected state
 const App = () => {
@@ -84,7 +90,8 @@ const App = () => {
 
   return (
     <div className="dropdown">
-      <h1>National Parks by State</h1>
+      <Header />
+      {/* <h1>National Parks by State</h1> */}
       {/* Handle null state, where user goes back to select a state */}
       <label htmlFor="state-dropdown">Select a state:</label>
       <select
@@ -115,22 +122,29 @@ const App = () => {
         <div className="park-results">
           {result.data.map((park) => (
             <React.Fragment key={park.id}>
-              <h3 key={park.id}>
+              <h3 className="margin" key={park.id}>
                 Park Name:{" "}
-                <a href={park.url} target="_blank" rel="noopener noreferrer">
+                <button
+                  className="park-link"
+                  onClick={() => window.open(park.url)}
+                >
+                  {/* <a href={park.url} target="_blank" rel="noopener noreferrer"> */}
                   {park.fullName}
-                </a>
+                </button>
+                {/* </a> */}
               </h3>
-              <p id="park-type">{park.designation}</p>
+              {/* Only show park.designation if it has a truthy value */}
+              {park.designation && (
+                <p className="park-type margin">{park.designation}</p>
+              )}
               <section id="section">Description: {park.description}</section>
             </React.Fragment>
           ))}
         </div>
       )}
+      <Footer />
     </div>
   );
 };
 
 export default App;
-
-// Next step, hide park designation if one isn't listed, see Delaware > Chesapeake Bay

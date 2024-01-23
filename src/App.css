@@ -6,9 +6,9 @@
   font-size: 16px;
 }
 
-h3,
-#park-type {
+.margin {
   margin-left: 30px;
+  margin-top: 0px;
 }
 
 .park-results {
@@ -18,20 +18,28 @@ h3,
 
 section {
   border-top: 3px inset rgb(99, 122, 171);
-  border-top-left-radius: 80px 80px;
+  border-radius: 70px 0 0 60px;
   padding: 30px;
 }
 
-#park-type {
+.park-type {
   border: 2px solid black;
   color: white;
   display: inline-block;
-  background-color: rgb(159, 66, 16);
-  padding: 10px;
-  font-weight: bold;
-  border-radius: 15px;
+  background-color: rgb(27, 74, 11);
+  line-height: 1;
+  font-family: Open Sans Condensed;
+  padding: 0.3125rem 0.5rem 0.4375rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
-a:visited {
-  color: green;
+.park-link {
+  background: none;
+  color: #005999;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
 }
