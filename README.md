@@ -4,6 +4,9 @@ A National Parks React App that uses the National Parks Service API to display p
 ## Available Scripts
 In the project directory, run:
 
+### npm install
+Install dependencies and node modules
+
 ### `npm start`
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
