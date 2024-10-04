@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-  /* Result variable is initially set to null and is being accessed before fetch returns the data. 
+/* Result variable is initially set to null and is being accessed before fetch returns the data. 
       Add a check to ensure result is not null (has a data property) and its > 0. 
       If result = null, return undefined and stop here
       If result has a data property which is null/undefined, or the length = 0, do same as above
       If any of these are false, stop expression. If true (result contains at least 1 park), display park results
       */
 
-const Results = ({selectedState}) => {
-    const [result, setResult ] = useState(null);
+const Results = ({ selectedState }) => {
+  const [result, setResult] = useState(null);
 
- // useEffect Hook makes the API Call and triggers an effect when the selectedState changes. The effect is a function that makes the API call and sets the result state variable with the response.
   useEffect(() => {
     if (selectedState) {
       //Is selectedState truthy. Only make a call if a state is selected (not null or empty)
@@ -18,7 +17,7 @@ const Results = ({selectedState}) => {
       fetch(
         `https://developer.nps.gov/api/v1/parks?stateCode=${selectedState}&api_key=${apiKey}`
       )
-        .then((res) => res.json()) //Data returned in a Promise, then parsed to JSON object
+        .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setResult(data);
@@ -28,7 +27,6 @@ const Results = ({selectedState}) => {
         });
     }
   }, [selectedState]); //Second argument in useEffect. An array of values, and when one of the values changes, useEffect is called
-
 
   return (
     <>
