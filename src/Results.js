@@ -15,7 +15,6 @@ const Results = ({selectedState}) => {
     if (selectedState) {
       //Is selectedState truthy. Only make a call if a state is selected (not null or empty)
       const apiKey = process.env.REACT_APP_NPS_API_KEY;
-      console.log(apiKey);
       fetch(
         `https://developer.nps.gov/api/v1/parks?stateCode=${selectedState}&api_key=${apiKey}`
       )

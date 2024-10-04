@@ -4,7 +4,7 @@ A National Parks React App that uses the National Parks Service API to display p
 ## Available Scripts
 In the project directory, run:
 
-### npm install
+### `npm install`
 Install dependencies and node modules
 
 ### `npm start`
