@@ -12,6 +12,7 @@
 /build
 
 # misc
+.npmrc
 .DS_Store
 .env
 .env.local
