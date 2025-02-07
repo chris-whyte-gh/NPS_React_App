@@ -1,4 +1,4 @@
-const Footer = () => {
+const Footer = ({title, department}) => {
   return (
     <footer>
       <p>
@@ -7,9 +7,9 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          National Park Service
+          {title}
         </a>
-        <p>U.S. Department of the Interior</p>
+        <p>{department}</p>
       </p>
     </footer>
   );

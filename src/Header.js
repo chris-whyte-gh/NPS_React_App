@@ -1,7 +1,7 @@
-const Header = () => {
+const Header = ({heading}) => {
   return (
     <header>
-      <h1>National Parks</h1>
+      <h1>{heading}</h1>
     </header>
   );
 };
