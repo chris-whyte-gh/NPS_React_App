@@ -1,6 +1,8 @@
 # NPS_React_App
 A National Parks React App that uses the National Parks Service API to display parks based on state and activity.
 
+See it live here: https://nps-parks-app.netlify.app/
+
 ## Available Scripts
 In the project directory, run:
 
