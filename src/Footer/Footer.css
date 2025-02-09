@@ -1,0 +1,22 @@
+footer {
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  /* position: absolute; */
+  background-color: #f8f9fa;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+
+
+ 
+  
+  margin-top: auto;
+}
+
+footer p {
+  margin: 10px 0 0 0;
+}
+
+footer p:last-of-type {
+  font-weight: bold;
+}

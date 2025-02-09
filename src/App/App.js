@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-import Header from "./Header";
-import Footer from "./Footer";
-import StateDropdown from "./StateDropdown";
-import Clear from "./Clear/Clear";
-import Results from "./Results";
-
-// To Do
-// Create a component for the dropdown
-// Create a component for the park results
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import StateDropdown from "../StateDropdown/StateDropdown";
+import Clear from "../Clear/Clear";
+import Results from "../Results/Results";
 
 //Define a state variable to manage the selected state
 const App = () => {
@@ -23,21 +19,22 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Header heading="National Parks by State" />
-      <div className="dropdown-container">
-        {/* Handle null state, where user goes back to select a state */}
-        <StateDropdown
-          selectedState={selectedState}
-          setSelectedState={setSelectedState}
-        />
-        <Clear clearResults={clearResults} />
+      <div className="header-container">
+        <Header heading="National Parks by State" />
+        <div className="dropdown-container">
+          {/* Handle null state, where user goes back to select a state */}
+          <StateDropdown
+            selectedState={selectedState}
+            setSelectedState={setSelectedState}
+          />
+          <Clear clearResults={clearResults} />
+        </div>
       </div>
       <Results
         selectedState={selectedState}
         results={results}
         setResults={setResults}
       />
-
       <Footer
         title="National Park Service"
         department="U.S. Department of the Interior"

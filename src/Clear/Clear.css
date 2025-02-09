@@ -1,4 +1,6 @@
 .clear-button {
-    border-radius: 15px;
-    margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 3px 5px;
 }

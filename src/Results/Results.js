@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import ParkCard from "../ParkCard/ParkCard";
 
 /* Result variable is initially set to null and is being accessed before fetch returns the data. 
       Add a check to ensure result is not null (has a data property) and is > 0. 
@@ -33,21 +34,7 @@ const Results = ({ selectedState, results, setResults }) => {
       {results?.data?.length > 0 && (
         <div className="park-results">
           {results.data.map((park) => (
-            <React.Fragment key={park.id}>
-              <h3 className="margin" key={park.id}>
-                Park Name:{" "}
-                <button
-                  className="park-link"
-                  onClick={() => window.open(park.url)}
-                >
-                  {park.fullName}
-                </button>
-              </h3>
-              {park.designation && (
-                <p className="park-type margin">{park.designation}</p>
-              )}
-              <section id="section">Description: {park.description}</section>
-            </React.Fragment>
+            <ParkCard park={park} key={park.id} />
           ))}
         </div>
       )}
