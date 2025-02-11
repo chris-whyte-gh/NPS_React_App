@@ -8,30 +8,27 @@ import Results from "../Results/Results";
 
 //Define a state variable to manage the selected state
 const App = () => {
-  const [selectedState, setSelectedState] = useState("");
+  const [selectedNpsState, setSelectedNpsState] = useState("");
   const [results, setResults] = useState(null);
   //set state of component with result data. We use null because it holds the response of the API call, and it may not be available. Component checks for response before rendering data. If we knew there would always be data, we could use an empty array.
-
-  const clearResults = () => {
-    setSelectedState("");
-    setResults(null);
-  };
 
   return (
     <div className="app-container">
       <div className="header-container">
         <Header heading="National Parks by State" />
         <div className="dropdown-container">
-          {/* Handle null state, where user goes back to select a state */}
           <StateDropdown
-            selectedState={selectedState}
-            setSelectedState={setSelectedState}
+            selectedState={selectedNpsState}
+            setSelectedState={setSelectedNpsState}
           />
-          <Clear clearResults={clearResults} />
+          <Clear
+            setSelectedNpsState={setSelectedNpsState}
+            setResults={setResults}
+          />
         </div>
       </div>
       <Results
-        selectedState={selectedState}
+        selectedState={selectedNpsState}
         results={results}
         setResults={setResults}
       />
